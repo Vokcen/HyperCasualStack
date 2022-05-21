@@ -9,7 +9,8 @@ public class CollectableCube : MonoBehaviour
     private bool isCollected;
     private int index;
     Collector _collector;
-   
+    [SerializeField] Movement movement;
+
 
     #endregion
     #region Monobehaviour CallBacks
@@ -21,9 +22,9 @@ public class CollectableCube : MonoBehaviour
 
     private void Update()
     {
-        if (transform.parent != null && isCollected)// Eðer objenin parent objesi boþ(null)deðil ise ve isCollected==True ise Çalýþýr
+        if (transform.parent != null && isCollected)// Eï¿½er objenin parent objesi boï¿½(null)deï¿½il ise ve isCollected==True ise ï¿½alï¿½ï¿½ï¿½r
         {
-            transform.localPosition = new Vector3(0, -index, 0); 
+            transform.localPosition = new Vector3(0, -index, 0);
         }
 
     }
@@ -37,6 +38,7 @@ public class CollectableCube : MonoBehaviour
             GetComponent<BoxCollider>().enabled = false;
             other.GetComponent<BoxCollider>().enabled = false;
         }
+    
 
     }
 

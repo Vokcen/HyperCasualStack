@@ -6,23 +6,47 @@ public class Movement : MonoBehaviour
 {
 
     #region Variables
-    [SerializeField]
-    private float upDownSpeed;
+
+    public float upDownSpeed;
 
     [SerializeField]
     private float rigtLeftSpeed;
     #endregion
     #region MonoBehaviour CallBacks
-    void Start()
+
+
+
+    void Update()
     {
-        
+        if (GameManager.instance.state == GameManager.State.game)
+        {
+            Move();
+        }
+
+
     }
 
-  
-    void Update()
+    private void Move()
     {
         float horizontal = Input.GetAxis("Horizontal") * rigtLeftSpeed * Time.deltaTime;
         this.transform.Translate(horizontal, 0, upDownSpeed * Time.deltaTime);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Speed"))
+        {
+            if (upDownSpeed == 10)
+            {
+                upDownSpeed = 15;
+            }
+            else
+            {
+                upDownSpeed = 10;
+            }
+
+
+        }
     }
     #endregion
 }
